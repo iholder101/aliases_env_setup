@@ -126,7 +126,7 @@ alias set-cgroup-v2='export KUBEVIRT_CGROUPV2="true"'
 # NOTE: In current setting all docker metadata is ephemeral. This causes a relatively large warm-up.
 # In the future this needs to be solved by sharing lib/docker dir ("-v kubevirt-docker:/var/lib/docker").
 # Another (ugly) option is to copy this directory into container at build time which will save *some* of the downloads.
-DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v ${KUBEVIRT_REPO}:${KUBEVIRT_REPO}"
+DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v ${KUBEVIRT_REPO}:/kubevirt"
 PODMAN_IN_DOCKER_TAG="16-07-23"
 alias new-repo-container='function temp_func { sudo podman run $DOCKER_IN_DOCKER_ARGS quay.io/mabekitzur/kubevirtci:${PODMAN_IN_DOCKER_TAG} ; } ; temp_func'
 alias into-container='function temp_func { sudo podman exec -it --user "iholder" $1 /bin/bash; }; temp_func'
