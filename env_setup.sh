@@ -2,10 +2,11 @@
 KUBEVIRT_REPO="/home/${USER}/Work/Repos/kubevirt/"
 
 # Kubevirt/Kubernetes setup
-export KUBEVIRT_PROVIDER=k8s-1.23 # this is also the default if no KUBEVIRT_PROVIDER is set
+export KUBEVIRT_PROVIDER=k8s-1.25 # this is also the default if no KUBEVIRT_PROVIDER is set
 export KUBECONFIG=${KUBEVIRT_REPO}/_ci-configs/${KUBEVIRT_PROVIDER}/.kubeconfig
 export KUBEVIRT_NUM_NODES=2
 export KUBEVIRT_STORAGE=rook-ceph-default
+export KUBEVIRTCI_PODMAN_SOCKET=/usr/lib/systemd/system/podman.socket
 #export GOOGLE_APPLICATION_CREDENTIALS="/home/iholder/ENV/gcp-service-account-creds.json"
 
 # Auto-completion key bindings
@@ -28,7 +29,7 @@ source "$(pkg-config --variable=completionsdir bash-completion)"/git
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-export PATH=$PATH:$(go env GOPATH)/bin
+#export PATH=$PATH:$(go env GOPATH)/bin
 
 # Gnome settings
 gsettings set org.gnome.mutter workspaces-only-on-primary true

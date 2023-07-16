@@ -4,8 +4,8 @@
 #
 
 ### GENERAL ALIAS CONFIGS ###
-THIS_FILE_PATH="~/ENV/aliases.sh"
-ENV_FILE_PATH="~/ENV/env_setup.sh"
+THIS_FILE_PATH="/home/iholder/.env/aliases_env_setup/aliases.sh"
+ENV_FILE_PATH="/home/iholder/.env/aliases_env_setup/env_setup.sh"
 
 #Alises
 alias update="source ${THIS_FILE_PATH} && source ${ENV_FILE_PATH}"
@@ -25,6 +25,7 @@ alias p3='python3'
 alias p2='python2'
 alias grep='grep -Hns'
 alias grep_src='grep --include=*.go --include=*.yaml --include=*.yml --include=*.sh --include=*.cpp --include=*.h --include=*.py --include=*.pl --include=*.c --include=*.hpp --include=*.i'
+alias grep_sh='function temp_func { grep $1 . -R --include=*.sh ; } ; temp_func'
 alias mk='make'
 alias mkc='make clean; make'
 alias docker='podman'
@@ -51,8 +52,9 @@ alias lco='lc --oneline'
 alias gs='git stash'
 alias gsp='git stash pop'
 alias gr='git rebase'
+alias gcp='git cherry-pick'
 alias grm='gr main'
-alias gdiff='git difftool'
+alias gdiff='git difftool -y'
 alias git-show-commit-files='git diff-tree --no-commit-id --name-only -r'
 
 #Remote Git
@@ -61,6 +63,11 @@ alias gps='git push'
 alias gf='git fetch'
 alias gfu='gf upstream'
 alias gpu='gpl --rebase upstream main:main'
+alias gpum='gpl --rebase upstream master:master'
+alias refetch-branch='function temp_func { a; git reset --hard; bc main; b -D $1; gf; bc $1 ; } ; temp_func'
+alias mrefetch-branch='function temp_func { a; git reset --hard; bc master; b -D $1; gf; bc $1 ; } ; temp_func'
+# $1: PR number, $2: branch name
+alias checkout-pr='function temp_func { git fetch origin pull/${1}/head:${2} ; git checkout $2 ; } ; temp_func'
 
 # Add git completion to aliases
 __git_complete g __git_main
@@ -93,7 +100,7 @@ alias word-wrap-off='setterm -linewrap off'
 alias cdk='function temp_func {  mkdir -p -- "$1" && cd -P -- "$1" ; } ; temp_func '
 alias doloop='function temp_func { for i in {1.. ${1} }; do $2 ; done ; } ; temp_func '
 # bug in Fedora
-alias fix-sound='pulseaudio -k && sudo alsa force-reload && systemctl --user restart pipewire'
+alias disable-pipewire='systemctl --user disable --now pipewire'
 
 # Kubevirt & Kubernetes
 alias kk="${KUBEVIRT_REPO}/cluster-up/kubectl.sh"
@@ -112,20 +119,36 @@ function temp_func { \
     echo "$1" > ./artifacts/TAKEN_FROM.URL; \
 } ; temp_func '
 alias test-no-fmt='d "CI=${CI} ARTIFACTS=${ARTIFACTS} hack/bazel-test.sh"'
+alias set-cgroup-v1='unset KUBEVIRT_CGROUPV2'
+alias set-cgroup-v2='export KUBEVIRT_CGROUPV2="true"'
 
 # Docker inside Podman
 # NOTE: In current setting all docker metadata is ephemeral. This causes a relatively large warm-up.
 # In the future this needs to be solved by sharing lib/docker dir ("-v kubevirt-docker:/var/lib/docker").
 # Another (ugly) option is to copy this directory into container at build time which will save *some* of the downloads.
 DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v ${KUBEVIRT_REPO}:${KUBEVIRT_REPO}"
-PODMAN_IN_DOCKER_TAG="12-07-2021"
+PODMAN_IN_DOCKER_TAG="26-03-2023"
 alias new-repo-container='function temp_func { sudo podman run $DOCKER_IN_DOCKER_ARGS kubevirt-dev:${PODMAN_IN_DOCKER_TAG} ; } ; temp_func'
 alias into-container='function temp_func { sudo podman exec -it --user "iholder" $1 /bin/bash; }; temp_func'
 alias into-container-root='function temp_func { sudo podman exec -it --user 0 $1 /bin/bash; }; temp_func'
 # TODO: 1) automate chmod for docker socket 2) get .inputrc + .vimrc into container 3) enable completion
+alias into-zeus='function temp_func { ssh root@zeus15.lab.eng.tlv2.redhat.com ; } ; temp_func '
+alias zeus-sshutle='sshuttle --dns -vr root@zeus15.lab.eng.tlv2.redhat.com 192.168.127.0/2'
+alias edit-kubevirt="k edit -n kubevirt kubevirt kubevirt"
+
+# Remote Zeus
+FILES_TO_INCLUDE='--include="*.yaml" --include="*.go" --include="BUILD.bazel" --include="*.json" --include="*.sh" --include="go.mod" --include="WORKSPACE" --include="api.proto"'
+FILES_TO_EXCLUDE='--exclude="vendor" --exclude="_out" --exclude="output/*" --exclude="_ci-configs" --exclude="_ci-configs/k8s-1.25/config-provider-k8s-1.25.sh" --exclude=".git/" --exclude-from=.gitignore'
+ZEUS_PARAMS='--chown=1000:1000 -pavm'
+ZEUS_ID='root@zeus15.lab.eng.tlv2.redhat.com'
+alias send-to-zeus='function temp_func { rsync ${ZEUS_PARAMS} ${FILES_TO_INCLUDE} --exclude="*" ${FILES_TO_EXCLUDE} . ${ZEUS_ID}:${1} ; } ; temp_func '
+alias fetch-from-zeus='function temp_func { rsync ${ZEUS_PARAMS} --include="*" ${FILES_TO_INCLUDE} --exclude="*" ${FILES_TO_EXCLUDE} ${ZEUS_ID}:${1}/* . ; } ; temp_func '
+
+# Docker and containers
+alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut -d" " -f1 | xargs`'
 
 # Misc
-alias quayio-login='docker login -u="mabekitzur" -p="FfgbBoCu+V8sKaLOBgIFCeqkrb3fZ2734jrJZD/2u93EeV6hr9DMep8gEk2SNIpz" quay.io'
+alias quayio-login='docker login -u="mabekitzur" -p="ApOtc4szRbgfg/7h1+uRBb9wYdRj8UOJomItV7lsPtBKtGpnkAkNCQZ+yoLwAkOu" quay.io'
 alias bazel='bazelisk'
 alias goland='~/.local/bin/goland'
 
