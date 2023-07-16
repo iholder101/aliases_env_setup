@@ -137,12 +137,15 @@ alias zeus-sshutle='sshuttle --dns -vr root@zeus15.lab.eng.tlv2.redhat.com 192.1
 alias edit-kubevirt="k edit -n kubevirt kubevirt kubevirt"
 
 # Remote Zeus
-FILES_TO_INCLUDE='--include="*.yaml" --include="*.go" --include="BUILD.bazel" --include="*.json" --include="*.sh" --include="go.mod" --include="WORKSPACE" --include="api.proto"'
-FILES_TO_EXCLUDE='--exclude="vendor" --exclude="_out" --exclude="output/*" --exclude="_ci-configs" --exclude="_ci-configs/k8s-1.25/config-provider-k8s-1.25.sh" --exclude=".git/" --exclude-from=.gitignore'
-ZEUS_PARAMS='--chown=1000:1000 -pavm'
-ZEUS_ID='root@zeus15.lab.eng.tlv2.redhat.com'
-alias send-to-zeus='function temp_func { rsync ${ZEUS_PARAMS} ${FILES_TO_INCLUDE} --exclude="*" ${FILES_TO_EXCLUDE} . ${ZEUS_ID}:${1} ; } ; temp_func '
-alias fetch-from-zeus='function temp_func { rsync ${ZEUS_PARAMS} --include="*" ${FILES_TO_INCLUDE} --exclude="*" ${FILES_TO_EXCLUDE} ${ZEUS_ID}:${1}/* . ; } ; temp_func '
+RSYNC_INCLUDE_LIST='--include='*.yaml' --include='*.go' --include='BUILD.bazel' --include='*.json' --include='*.sh' --include='go.mod' --include='WORKSPACE' --include='api.proto''
+RSYNC_EXCLUDE_LIST='--exclude='vendor/' --exclude='_out/' --exclude='output/' --exclude='_ci-configs/' --exclude='.idea/' --exclude-from='.gitignore' --exclude='.git/''
+RSYNC_FILE_LIST="${RSYNC_EXCLUDE_LIST} ${RSYNC_INCLUDE_LIST} --include='*/' --exclude='*'"
+RSYNC_CORE_PARAMS='--chown=1000:1000 -pavmh'
+RSYNC_ZEUS_ID='root@zeus15.lab.eng.tlv2.redhat.com'
+RSYNC_PARAMS="${RSYNC_CORE_PARAMS} ${RSYNC_FILE_LIST}"
+RSYNC_TEXT="Executing rsync with params ${RSYNC_PARAMS} and " # expected to follow with "echo $2" in functions below
+alias send-to-zeus='function temp_func { echo -n "${RSYNC_TEXT}"; echo "${2}"; rsync ${2} ${RSYNC_PARAMS} . ${RSYNC_ZEUS_ID}:${1} ; } ; temp_func '
+alias fetch-from-zeus='function temp_func { echo -n "${RSYNC_TEXT}"; echo "${2}"; rsync ${2} ${RSYNC_PARAMS} ${RSYNC_ZEUS_ID}:${1}/* . ; } ; temp_func '
 
 # Docker and containers
 alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut -d" " -f1 | xargs`'
