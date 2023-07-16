@@ -128,7 +128,7 @@ alias set-cgroup-v2='export KUBEVIRT_CGROUPV2="true"'
 # Another (ugly) option is to copy this directory into container at build time which will save *some* of the downloads.
 
 # In zeus:
-# DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v /root/Repos/kubevirt_in_docker${REPO2_ADDITION}:/home/iholder/kubevirt -v /root/docker-in-podman-data/repo${REPO2_ADDITION}:/var/lib/docker"
+#DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v /root/Repos/kubevirt_in_docker${REPO2_ADDITION}:/home/iholder/kubevirt -v /root/docker-in-podman-data/repo${REPO2_ADDITION}:/var/lib/docker"
 DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v ${KUBEVIRT_REPO}:/kubevirt"
 PODMAN_IN_DOCKER_TAG="16-07-23"
 alias new-repo-container='function temp_func { sudo podman run $DOCKER_IN_DOCKER_ARGS quay.io/mabekitzur/kubevirtci:${PODMAN_IN_DOCKER_TAG} ; } ; temp_func'
