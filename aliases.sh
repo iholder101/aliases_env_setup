@@ -154,6 +154,21 @@ alias fetch-from-zeus='function temp_func { echo -n "${RSYNC_TEXT}"; echo "${2}"
 # Docker and containers
 alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut -d" " -f1 | xargs`'
 
+# Custom containers
+DEBUG_CONTAINER_TAG='17-07-23'
+alias debug-container='\
+function temp_func { \
+	DIR_TO_COPY=$1; \
+	CONTAINER_ID=`podman run -it -d --rm quay.io/mabekitzur/debug-fedora:${DEBUG_CONTAINER_TAG}`; \
+	echo "CONTAINER ID: $CONTAINER_ID. DIR_TO_COPY: $DIR_TO_COPY"; \
+	if [ -n "$DIR_TO_COPY" ]; then \
+		podman cp "$DIR_TO_COPY" $CONTAINER_ID:/home/iholder; \
+	fi; \
+	podman exec -it "${CONTAINER_ID}" bash; \
+	podman kill "${CONTAINER_ID}" > /dev/null; \
+	podman rm --force "${CONTAINER_ID}" > /dev/null; \
+} ; temp_func '
+
 # Misc
 alias quayio-login='docker login -u="mabekitzur" -p="ApOtc4szRbgfg/7h1+uRBb9wYdRj8UOJomItV7lsPtBKtGpnkAkNCQZ+yoLwAkOu" quay.io'
 alias bazel='bazelisk'
