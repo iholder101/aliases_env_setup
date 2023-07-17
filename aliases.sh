@@ -160,7 +160,7 @@ alias debug-container='\
 function temp_func { \
 	DIR_TO_COPY=$1; \
 	CONTAINER_ID=`podman run -it -d --rm quay.io/mabekitzur/debug-fedora:${DEBUG_CONTAINER_TAG}`; \
-	echo "CONTAINER ID: $CONTAINER_ID. DIR_TO_COPY: $DIR_TO_COPY"; \
+	echo "CONTAINER ID: ${CONTAINER_ID:0:12}. DIR_TO_COPY: ${DIR_TO_COPY}"; \
 	if [ -n "$DIR_TO_COPY" ]; then \
 		podman cp "$DIR_TO_COPY" $CONTAINER_ID:/home/iholder; \
 	fi; \
