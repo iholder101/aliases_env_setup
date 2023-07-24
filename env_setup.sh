@@ -29,7 +29,9 @@ source "$(pkg-config --variable=completionsdir bash-completion)"/git
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-#export PATH=$PATH:$(go env GOPATH)/bin
+# Zeus-related
+export KUBERNETES_ENV_FILE='/root/Repos/kubernetes.env'
+export KUBERNETES_REPO_DIR='/root/Repos/kubernetes'
 
 # Gnome settings
 gsettings set org.gnome.mutter workspaces-only-on-primary true
