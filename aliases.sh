@@ -105,6 +105,7 @@ alias disable-pipewire='systemctl --user disable --now pipewire'
 alias kk="${KUBEVIRT_REPO}/cluster-up/kubectl.sh"
 alias k='kk'
 alias vv="${KUBEVIRT_REPO}/cluster-up/virtctl.sh"
+alias v="${KUBEVIRT_REPO}/cluster-up/virtctl.sh"
 alias d="${KUBEVIRT_REPO}/hack/dockerized"
 alias init-cluser='make cluster-down && make cluster-up && make cluster-sync'
 alias set-nodes-number='function temp_func { export KUBEVIRT_NUM_NODES=$1 ; } ; temp_func'
@@ -150,6 +151,10 @@ RSYNC_TEXT="Executing rsync with params ${RSYNC_PARAMS} and " # expected to foll
 alias send-to-zeus='function temp_func { echo -n "${RSYNC_TEXT}"; echo "${2}"; rsync ${2} ${RSYNC_PARAMS} . ${RSYNC_ZEUS_ID}:${1} ; } ; temp_func '
 alias fetch-from-zeus='function temp_func { echo -n "${RSYNC_TEXT}"; echo "${2}"; rsync ${2} ${RSYNC_PARAMS} ${RSYNC_ZEUS_ID}:${1}/* . ; } ; temp_func '
 alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
+
+# Zeus Specific
+# The below is sometimes needed for cluster in containers to work on beaker
+# modprobe ip_tables && echo ip_tables > /etc/modules-load.d/ip_tables.conf
 
 # Docker and containers
 alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut -d" " -f1 | xargs`'
