@@ -181,6 +181,11 @@ alias quayio-login='docker login -u="mabekitzur" -p="ApOtc4szRbgfg/7h1+uRBb9wYdR
 alias bazel='bazelisk'
 alias goland='~/.local/bin/goland'
 
+# Kubevirt Testing
+alias test-reset-args='unset FUNC_TEST_ARGS'
+alias test-run-until-fails='export FUNC_TEST_ARGS="--until-it-fails"'
+alias test-run-N-times='function temp_func { export FUNC_TEST_ARGS="--repeat=${1}"; }; temp_func'
+
 # Gotos
 alias goto-kubevirt="cd $KUBEVIRT_REPO"
 alias goto-buf="cd ~/Work/KubeVirt/buf"
