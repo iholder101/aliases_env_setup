@@ -155,6 +155,9 @@ alias send-to-zeus='function temp_func { echo -n "${RSYNC_TEXT}"; echo "${2}"; r
 alias fetch-from-zeus='function temp_func { echo -n "${RSYNC_TEXT}"; echo "${2}"; rsync ${2} ${RSYNC_PARAMS} ${RSYNC_ZEUS_ID}:${1}/* . ; } ; temp_func '
 alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
 
+# Run k8s test on GCP (project ID is openshift-gce-devel) 
+# export KUBE_SSH_USER=core && make test-e2e-node REMOTE=true RUNTIME=remote DELETE_INSTANCES=true USE_DOCKERIZED_BUILD=false IMAGE_CONFIG_FILE="/workspace/test-infra/jobs/e2e_node/crio/latest/image-config-cgrpv2.yaml" INSTANCE_PREFIX="iholder-swap" CLEANUP=true CONTAINER_RUNTIME_ENDPOINT="unix:///var/run/crio/crio.sock" FOCUS="\[ihol3\]" TEST_ARGS='--kubelet-flags="--cgroup-driver=systemd --cgroups-per-qos=true --cgroup-root=/  --runtime-cgroups=/system.slice/crio.service --kubelet-cgroups=/system.slice/kubelet.service --non-masquerade-cidr=0.0.0.0/0" --extra-log="{\"name\": \"crio.log\", \"journalctl\": [\"-u\", \"crio\"]}"'
+
 # Zeus Specific
 # The below is sometimes needed for cluster in containers to work on beaker
 # modprobe ip_tables && echo ip_tables > /etc/modules-load.d/ip_tables.conf
