@@ -169,9 +169,10 @@ alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut 
 DEBUG_CONTAINER_TAG='17-07-23'
 alias debug-container='\
 function temp_func { \
-	DIR_TO_COPY=$1; \
-	CONTAINER_ID=`podman run -it -d --rm quay.io/mabekitzur/debug-fedora:${DEBUG_CONTAINER_TAG}`; \
-	echo "CONTAINER ID: ${CONTAINER_ID:0:12}. DIR_TO_COPY: ${DIR_TO_COPY}"; \
+	DIR_TO_COPY="$1"; \
+	EXTRA_PODMAN_ARGS="$2"; \
+	CONTAINER_ID=`podman run -it -d --rm ${EXTRA_PODMAN_ARGS} quay.io/mabekitzur/debug-fedora:${DEBUG_CONTAINER_TAG}`; \
+	echo "CONTAINER ID: ${CONTAINER_ID:0:12}. DIR_TO_COPY: ${DIR_TO_COPY}. EXTRA PODMAN ARGS: ${EXTRA_PODMAN_ARGS}"; \
 	if [ -n "$DIR_TO_COPY" ]; then \
 		podman cp "$DIR_TO_COPY" $CONTAINER_ID:/home/iholder; \
 	fi; \
