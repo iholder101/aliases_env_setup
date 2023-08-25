@@ -172,6 +172,7 @@ alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
 # The below is sometimes needed for cluster in containers to work on beaker
 # modprobe ip_tables && echo ip_tables > /etc/modules-load.d/ip_tables.conf
 # gcloud init (project ID is openshift-gce-devel)
+# Change kubelet's systemd to not fail on swap
 
 # Docker and containers
 alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut -d" " -f1 | xargs`'
