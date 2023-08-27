@@ -166,8 +166,10 @@ alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
 # export KUBE_SSH_USER=core && make test-e2e-node FOCUS="SwapConformance" INSTANCE_PREFIX="iholder-swap" CLEANUP=true SSH_USER="core" KUBE_SSH_USER=core REMOTE=true RUNTIME=remote USE_DOCKERIZED_BUILD=false IMAGE_CONFIG_FILE="/workspace/test-infra/jobs/e2e_node/crio/latest/image-config-cgrpv2-swap1g.yaml" CONTAINER_RUNTIME_ENDPOINT="unix:///var/run/crio/crio.sock" TEST_ARGS='--kubelet-flags="--fail-swap-on=false --cgroup-driver=systemd --cgroups-per-qos=true --cgroup-root=/  --runtime-cgroups=/system.slice/crio.service --kubelet-cgroups=/system.slice/kubelet.service" --extra-log="{\"name\": \"crio.log\", \"journalctl\": [\"-u\", \"crio\"]}" --feature-gates=NodeSwap=true'
 #
 # Local testing (SELinux might get in the way):
-# make test-e2e-node REMOTE=false CLEANUP=false FOCUS="SwapConformance" CONTAINER_RUNTIME_ENDPOINT=unix:///var/run/crio/crio.sock TEST_ARGS='--kubelet-flags="--cgroup-driver=systemd --fail-swap-on=false" --feature-gates=NodeSwap=true'
-
+# make test-e2e-node REMOTE=false CLEANUP=true FOCUS="SwapConformance" CONTAINER_RUNTIME_ENDPOINT=unix:///var/run/crio/crio.sock TEST_ARGS='--kubelet-flags="--cgroup-driver=systemd --fail-swap-on=false" --feature-gates=NodeSwap=true'
+#
+# Fix problem of kubelet not cleaned up: kill -9 `netstat -tulpn | grep 10255 | tr -s " " | cut -d" " -f8 | cut -d"/" -f1`
+#
 # Zeus Specific
 # The below is sometimes needed for cluster in containers to work on beaker
 # modprobe ip_tables && echo ip_tables > /etc/modules-load.d/ip_tables.conf
