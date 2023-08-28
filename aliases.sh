@@ -175,6 +175,7 @@ alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
 # modprobe ip_tables && echo ip_tables > /etc/modules-load.d/ip_tables.conf
 # gcloud init (project ID is openshift-gce-devel)
 # Change kubelet's systemd to not fail on swap
+alias ssh-gcloud='function temp_func { gcloud compute ssh core@${1}; }; temp_func'
 
 # Docker and containers
 alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut -d" " -f1 | xargs`'
