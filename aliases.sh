@@ -208,6 +208,7 @@ alias test-run-N-times='function temp_func { export FUNC_TEST_ARGS="--repeat=${1
 
 # Gotos
 alias goto-kubevirt="cd $KUBEVIRT_REPO"
+alias goto-k8s="cd $KUBERNETES_REPO"
 alias goto-buf="cd ~/Work/KubeVirt/buf"
 
 # Clean up

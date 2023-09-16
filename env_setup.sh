@@ -1,5 +1,7 @@
 # Global paths
-KUBEVIRT_REPO="/home/${USER}/Work/Repos/kubevirt/"
+REPO_DIR="/home/${USER}/Work/Repos/"
+KUBEVIRT_REPO="${REPO_DIR}/kubevirt/"
+KUBERNETES_REPO="${REPO_DIR}/kubernetes/"
 
 # Kubevirt/Kubernetes setup
 export KUBEVIRT_PROVIDER=k8s-1.25 # this is also the default if no KUBEVIRT_PROVIDER is set
