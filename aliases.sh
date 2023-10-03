@@ -23,7 +23,7 @@ alias ge='geany'
 alias diff='meld'
 alias p3='python3'
 alias p2='python2'
-alias grep='grep -HnsI --color=auto'
+alias grep='grep -sI --color=auto' # add -Hn for file+line number
 alias grep_src='grep --include=*.go --include=*.yaml --include=*.yml --include=*.sh --include=*.cpp --include=*.h --include=*.py --include=*.pl --include=*.c --include=*.hpp --include=*.i'
 alias grep_here='function temp_func { grep $1 . -R; } ; temp_func'
 alias grep_sh='grep_here --include=*.sh'
