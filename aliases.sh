@@ -30,6 +30,7 @@ alias grep_sh='grep_here --include=*.sh'
 alias mk='make'
 alias mkc='make clean; make'
 alias docker='podman'
+alias scale-text='function temp_func { gsettings set org.gnome.desktop.interface text-scaling-factor $1; } ; temp_func'
 
 #Sed patterns
 alias sed-remove-colors="sed 's/\x1b\[[0-9;]*m//g'"
