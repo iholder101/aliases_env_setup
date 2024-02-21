@@ -125,6 +125,7 @@ function temp_func { \
 alias test-no-fmt='d "CI=${CI} ARTIFACTS=${ARTIFACTS} hack/bazel-test.sh"'
 alias set-cgroup-v1='unset KUBEVIRT_CGROUPV2'
 alias set-cgroup-v2='export KUBEVIRT_CGROUPV2="true"'
+alias node-ssh="${KUBEVIRT_REPO}/cluster-up/ssh.sh"
 
 # Docker inside Podman
 # NOTE: In current setting all docker metadata is ephemeral. This causes a relatively large warm-up.
