@@ -136,7 +136,7 @@ alias node-ssh="${KUBEVIRT_REPO}/cluster-up/ssh.sh"
 #DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v /root/Repos/kubevirt_in_docker${REPO2_ADDITION}:/home/iholder/kubevirt -v /root/docker-in-podman-data/repo${REPO2_ADDITION}:/var/lib/docker"
 DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v ${KUBEVIRT_REPO}:/kubevirt"
 PODMAN_IN_DOCKER_TAG="10-03-24"
-alias new-repo-container='function temp_func { sudo podman run $DOCKER_IN_DOCKER_ARGS quay.io/mabekitzur/kubevirtci:${PODMAN_IN_DOCKER_TAG} ; } ; temp_func'
+alias new-repo-container='function temp_func { sudo podman run --name=k${REPO2_ADDITION} $DOCKER_IN_DOCKER_ARGS quay.io/mabekitzur/kubevirtci:${PODMAN_IN_DOCKER_TAG} ; } ; temp_func'
 alias into-container='function temp_func { sudo podman exec -it --user "iholder" $1 /bin/bash; }; temp_func'
 alias into-container-root='function temp_func { sudo podman exec -it --user 0 $1 /bin/bash; }; temp_func'
 alias kill-podman='function temp_func { podman stop $1; podman rm $1; }; temp_func'
