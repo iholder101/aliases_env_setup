@@ -37,3 +37,5 @@ export KUBERNETES_REPO_DIR='/root/Repos/kubernetes'
 
 # Gnome settings
 gsettings set org.gnome.mutter workspaces-only-on-primary true
+
+export REPO2_ADDITION=1

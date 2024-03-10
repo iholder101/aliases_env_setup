@@ -114,8 +114,8 @@ alias d="${KUBEVIRT_REPO}/hack/dockerized"
 alias init-cluser='make cluster-down && make cluster-up && make cluster-sync'
 alias set-nodes-number='function temp_func { export KUBEVIRT_NUM_NODES=$1 ; } ; temp_func'
 alias get-nodes-number='echo Number of nodes: $KUBEVIRT_NUM_NODES'
-alias switch-repo1='KUBEVIRT_REPO="/home/iholder/Work/KubeVirt/kubevirt_repo/"; aliasupdate'
-alias switch-repo2='KUBEVIRT_REPO="/home/iholder/Work/KubeVirt/kubevirt_repo2/"; aliasupdate'
+alias switch-repo1='REPO2_ADDITION=1; KUBEVIRT_REPO="/home/iholder/Work/Repos/kubevirt"; aliasupdate'
+alias switch-repo2='REPO2_ADDITION=2; KUBEVIRT_REPO="/home/iholder/Work/Repos/kubevirt2"; aliasupdate'
 alias get-artifacts='\
 function temp_func { \
     TMP_URL=$( echo "${1}" | sed "s/.*kubevirt-prow/kubevirt-prow/g" | sed "s/artifacts.*/artifacts/g"); \
