@@ -137,8 +137,8 @@ alias node-ssh="${KUBEVIRT_REPO}/cluster-up/ssh.sh"
 DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v ${KUBEVIRT_REPO}:/kubevirt"
 PODMAN_IN_DOCKER_TAG="10-03-24"
 alias new-repo-container='function temp_func { sudo podman run --name=k${REPO2_ADDITION} $DOCKER_IN_DOCKER_ARGS quay.io/mabekitzur/kubevirtci:${PODMAN_IN_DOCKER_TAG} ; } ; temp_func'
-alias into-container='function temp_func { sudo podman exec -it --user "iholder" $1 /bin/bash; }; temp_func'
-alias into-container-root='function temp_func { sudo podman exec -it --user 0 $1 /bin/bash; }; temp_func'
+alias into-container='function temp_func { sudo podman exec -it --privileged --user "iholder" $1 /bin/bash; }; temp_func'
+alias into-container-root='function temp_func { sudo podman exec -it --privileged --user 0 $1 /bin/bash; }; temp_func'
 alias kill-podman='function temp_func { podman stop $1; podman rm $1; }; temp_func'
 # TODO: 1) automate chmod for docker socket 2) get .inputrc + .vimrc into container 3) enable completion
 alias into-zeus='function temp_func { ssh root@zeus15.lab.eng.tlv2.redhat.com ; } ; temp_func '
