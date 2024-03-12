@@ -31,6 +31,7 @@ alias mk='make'
 alias mkc='make clean; make'
 alias docker='podman'
 alias scale-text='function temp_func { gsettings set org.gnome.desktop.interface text-scaling-factor $1; } ; temp_func'
+alias cls='cl; s'
 
 #Sed patterns
 alias sed-remove-colors="sed 's/\x1b\[[0-9;]*m//g'"
@@ -134,7 +135,7 @@ alias node-ssh="${KUBEVIRT_REPO}/cluster-up/ssh.sh"
 
 # In zeus:
 #DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v /root/Repos/kubevirt_in_docker${REPO2_ADDITION}:/home/iholder/kubevirt -v /root/docker-in-podman-data/repo${REPO2_ADDITION}:/var/lib/docker"
-DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v ${KUBEVIRT_REPO}:/kubevirt"
+DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v ${KUBEVIRT_REPO}:/kubevirt -v /home/iholder/Work/Repos/docker-in-container-data/kubevirt${REPO2_ADDITION}:/var/lib/docker"
 PODMAN_IN_DOCKER_TAG="10-03-24"
 alias new-repo-container='function temp_func { sudo podman run --name=k${REPO2_ADDITION} $DOCKER_IN_DOCKER_ARGS quay.io/mabekitzur/kubevirtci:${PODMAN_IN_DOCKER_TAG} ; } ; temp_func'
 alias into-container='function temp_func { sudo podman exec -it --privileged --user "iholder" $1 /bin/bash; }; temp_func'
