@@ -150,7 +150,8 @@ alias edit-kubevirt="k edit -n kubevirt kubevirt kubevirt"
 RSYNC_INCLUDE_LIST='--include='*.yaml' --include='*.go' --include='BUILD.bazel' --include='*.json' --include='*.sh' --include='go.mod' --include='WORKSPACE' --include='api.proto''
 RSYNC_EXCLUDE_LIST='--exclude='vendor/' --exclude='_out/' --exclude='output/' --exclude='_ci-configs/' --exclude='.idea/' --exclude-from='.gitignore' --exclude='.git/''
 RSYNC_FILE_LIST="${RSYNC_EXCLUDE_LIST} ${RSYNC_INCLUDE_LIST} --include='*/' --exclude='*'"
-RSYNC_CORE_PARAMS='--chown=1000:1000 -pavmh'
+ZEUS_USER_NUMBER="1001"
+RSYNC_CORE_PARAMS="--chown=${ZEUS_USER_NUMBER}:${ZEUS_USER_NUMBER} -pavmh"
 RSYNC_ZEUS_ID='root@zeus15.lab.eng.tlv2.redhat.com'
 RSYNC_PARAMS="${RSYNC_CORE_PARAMS} ${RSYNC_FILE_LIST}"
 RSYNC_TEXT="Executing rsync with params ${RSYNC_PARAMS} and " # expected to follow with "echo $2" in functions below
