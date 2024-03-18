@@ -181,10 +181,18 @@ alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
 # modprobe ip_tables && echo ip_tables > /etc/modules-load.d/ip_tables.conf
 # gcloud init (project ID is openshift-gce-devel)
 # Change kubelet's systemd to not fail on swap
+#
+# If ping doesn't work, do sudo sysctl -w net.ipv4.ping_group_range="0 2000"
 alias ssh-gcloud='function temp_func { gcloud compute ssh core@${1}; }; temp_func'
 
 # Docker and containers
 alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut -d" " -f1 | xargs`'
+
+# Kind
+KIND_IMAGE_NAME="iholder-node-image:latest"
+CLUSTER_NAME="k8s-dev"
+alias kind-build-node-image="kind build node-image ${KUBERNETES_REPO} --image '${KIND_IMAGE_NAME}'"
+alias kind-create-cluster="kind delete cluster --name ${CLUSTER_NAME}; kind create cluster --config kind.config --image ${KIND_IMAGE_NAME} --name ${CLUSTER_NAME}"
 
 # Custom containers
 DEBUG_CONTAINER_TAG='17-07-23'
