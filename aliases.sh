@@ -151,13 +151,16 @@ RSYNC_INCLUDE_LIST='--include='*.yaml' --include='*.go' --include='BUILD.bazel' 
 RSYNC_EXCLUDE_LIST='--exclude='vendor/' --exclude='_out/' --exclude='output/' --exclude='_ci-configs/' --exclude='.idea/' --exclude-from='.gitignore' --exclude='.git/''
 RSYNC_FILE_LIST="${RSYNC_EXCLUDE_LIST} ${RSYNC_INCLUDE_LIST} --include='*/' --exclude='*'"
 ZEUS_USER_NUMBER="1000"
-RSYNC_CORE_PARAMS="--chown=${ZEUS_USER_NUMBER}:${ZEUS_USER_NUMBER} -pamh"
+RSYNC_CORE_PARAMS="-pamh" #"--chown=${ZEUS_USER_NUMBER}:${ZEUS_USER_NUMBER} -pamh"
 RSYNC_ZEUS_ID='root@zeus15.lab.eng.tlv2.redhat.com'
 RSYNC_PARAMS="${RSYNC_CORE_PARAMS} ${RSYNC_FILE_LIST}"
 RSYNC_TEXT="Executing rsync with params ${RSYNC_PARAMS} and " # expected to follow with "echo $2" in functions below
 alias send-to-zeus='function temp_func { echo -n "${RSYNC_TEXT}"; echo "${2}"; rsync ${2} ${RSYNC_PARAMS} . ${RSYNC_ZEUS_ID}:${1} ; } ; temp_func '
 alias fetch-from-zeus='function temp_func { echo -n "${RSYNC_TEXT}"; echo "${2}"; rsync ${2} ${RSYNC_PARAMS} ${RSYNC_ZEUS_ID}:${1}/* . ; } ; temp_func '
 alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
+
+# Avoid password with SSH:
+# ssh-copy-id -i ~/.ssh/id_ed25519.pub root@zeus15.lab.eng.tlv2.redhat.com
 
 # Run k8s test on GCP (project ID is openshift-gce-devel)
 #
@@ -192,8 +195,10 @@ alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut 
 KIND_IMAGE_NAME="iholder-node-image:latest"
 CLUSTER_NAME="k8s-dev"
 KIND_CONFIG_FILE_PATH="/root/Repos/kind.config"
-alias kind-build-node-image="kind build node-image ${KUBERNETES_REPO} --image '${KIND_IMAGE_NAME}'"
+alias kind-setup-git-version="cd ${KUBERNETES_REPO}; export KUBE_GIT_VERSION=`git rev-parse HEAD`; cd -; echo KUBE_GIT_VERSION=$KUBE_GIT_VERSION"
+alias kind-build-node-image="kind build node-image ${KUBERNETES_REPO} --image ${KIND_IMAGE_NAME}"
 alias kind-create-cluster="kind delete cluster --name ${CLUSTER_NAME}; kind create cluster --config ${KIND_CONFIG_FILE_PATH} --image ${KIND_IMAGE_NAME} --name ${CLUSTER_NAME}; alias k=kubectl"
+alias kind-init-cluster="kind-build-node-image; kind-create-cluster"
 
 # Custom containers
 DEBUG_CONTAINER_TAG='17-07-23'
@@ -215,6 +220,8 @@ function temp_func { \
 alias quayio-login='docker login -u="mabekitzur" -p="ApOtc4szRbgfg/7h1+uRBb9wYdRj8UOJomItV7lsPtBKtGpnkAkNCQZ+yoLwAkOu" quay.io'
 alias bazel='bazelisk'
 alias goland='~/.local/bin/goland'
+# Use this to find cluster's kubeconfig. Search kubeconfigs on that node
+alias ssh-executor='ssh -l cloud-user -i ~/.ssh/cnv-qe-jenkins.key ocp-ipi-executor.cnv-qe.rhcloud.com'
 
 # Kubevirt Testing
 alias test-reset-args='unset FUNC_TEST_ARGS'
