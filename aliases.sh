@@ -167,6 +167,8 @@ alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
 # A fresh GCP instance:
 # export KUBE_SSH_USER=core && make test-e2e-node FOCUS="iholder" INSTANCE_PREFIX="iholder-swap" CLEANUP=false SSH_USER="core" KUBE_SSH_USER=core REMOTE=true RUNTIME=remote USE_DOCKERIZED_BUILD=false IMAGE_CONFIG_FILE="/workspace/test-infra/jobs/e2e_node/swap/image-config-swap-fedora.yaml" CONTAINER_RUNTIME_ENDPOINT="unix:///var/run/crio/crio.sock" TEST_ARGS='--kubelet-flags="--fail-swap-on=false --cgroup-driver=systemd --cgroups-per-qos=true --cgroup-root=/  --runtime-cgroups=/system.slice/crio.service --kubelet-cgroups=/system.slice/kubelet.service" --extra-log="{\"name\": \"crio.log\", \"journalctl\": [\"-u\", \"crio\"]}" --feature-gates=NodeSwap=true --service-feature-gates="NodeSwap=true"'
 #
+# Change config file to /workspace/test-infra/jobs/e2e_node/crio/latest/image-config-cgrpv2.yaml to make INSTANCE_PREFIX= to work but with a slightly different machine than CI
+#
 # Other useful flags: DELETE_INSTANCES=true CLEANUP=true
 #
 # An old GCP instance:
