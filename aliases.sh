@@ -229,6 +229,7 @@ alias ssh-executor='ssh -l cloud-user -i ~/.ssh/cnv-qe-jenkins.key ocp-ipi-execu
 alias test-reset-args='unset FUNC_TEST_ARGS'
 alias test-run-until-fails='export FUNC_TEST_ARGS="--until-it-fails"'
 alias test-run-N-times='function temp_func { export FUNC_TEST_ARGS="--repeat=${1}"; }; temp_func'
+alias install-metric-server='k apply -f https://raw.githubusercontent.com/pythianarora/total-practice/master/sample-kubernetes-code/metrics-server.yaml'
 
 # Gotos
 alias goto-kubevirt="cd $KUBEVIRT_REPO"
