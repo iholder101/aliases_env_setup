@@ -201,6 +201,7 @@ alias kind-setup-git-version="cd ${KUBERNETES_REPO}; export KUBE_GIT_VERSION=`gi
 alias kind-build-node-image="kind build node-image ${KUBERNETES_REPO} --image ${KIND_IMAGE_NAME}"
 alias kind-create-cluster="kind delete cluster --name ${CLUSTER_NAME}; kind create cluster --config ${KIND_CONFIG_FILE_PATH} --image ${KIND_IMAGE_NAME} --name ${CLUSTER_NAME}; alias k=kubectl"
 alias kind-init-cluster="kind-build-node-image; kind-create-cluster"
+alias into-kind='export KUBE_GIT_VERSION="v1.30.0"; cd /root/Repos/; alias k=/root/Repos/kubernetes/_output/local/go/bin/kubectl'
 
 # Custom containers
 DEBUG_CONTAINER_TAG='17-07-23'
