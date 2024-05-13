@@ -187,6 +187,9 @@ alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
 # gcloud init (project ID is openshift-gce-devel)
 # Change kubelet's systemd to not fail on swap
 #
+# To run non-node tests on kind run:
+# ./_output/bin/e2e.test -context kind-k8s-dev -ginkgo.focus=".*iholder.*" -provider=local -num-nodes=2 #-ginkgo.vv
+#
 # If ping doesn't work, do sudo sysctl -w net.ipv4.ping_group_range="0 2000"
 alias ssh-gcloud='function temp_func { gcloud compute ssh core@${1}; }; temp_func'
 
