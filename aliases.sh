@@ -79,6 +79,7 @@ __git_complete gm _git_merge
 __git_complete gpl _git_pull
 __git_complete b _git_branch
 __git_complete gr _git_rebase
+alias add-kubectl-completion="echo 'source <(kubectl completion bash)' >>~/.bashrc"
 
 #General Unix
 alias l='ls -lh'
