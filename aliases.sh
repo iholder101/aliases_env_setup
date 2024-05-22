@@ -108,8 +108,8 @@ alias doloop='function temp_func { for i in {1.. ${1} }; do $2 ; done ; } ; temp
 alias disable-pipewire='systemctl --user disable --now pipewire'
 
 # Tools and conversions
-alias human-bytes='numfmt --to=iec-i'
-alias human-si='numfmt --to=si'
+alias human-bytes='function temp_func { numfmt --to=iec-i --format="%.2f" $1 ; } ; temp_func '
+alias human-si='function temp_func { numfmt --to=si --format="%.2f" $1 ; } ; temp_func '
 
 # Kubevirt & Kubernetes
 alias kk="${KUBEVIRT_REPO}/cluster-up/kubectl.sh"
