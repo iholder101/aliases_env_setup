@@ -196,6 +196,7 @@ alias ssh-gcloud='function temp_func { gcloud compute ssh core@${1}; }; temp_fun
 
 # Docker and containers
 alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut -d" " -f1 | xargs`'
+alias docker-delete-everything='docker rm -f $(docker ps -a -q); docker rmi -f $(docker images -q); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q)'
 
 # Kind
 KIND_IMAGE_NAME="iholder-node-image:latest"
