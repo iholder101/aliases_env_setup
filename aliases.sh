@@ -107,6 +107,10 @@ alias doloop='function temp_func { for i in {1.. ${1} }; do $2 ; done ; } ; temp
 # bug in Fedora
 alias disable-pipewire='systemctl --user disable --now pipewire'
 
+# Tools and conversions
+alias human-bytes='numfmt --to=iec-i'
+alias human-si='numfmt --to=si'
+
 # Kubevirt & Kubernetes
 alias kk="${KUBEVIRT_REPO}/cluster-up/kubectl.sh"
 alias k='kk'
