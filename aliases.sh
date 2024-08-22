@@ -182,7 +182,7 @@ alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
 # Please notice HOSTS that exists here instead of INSTANCE_PREFIX.
 #
 # Local testing (SELinux might get in the way):
-# make test-e2e-node REMOTE=false CLEANUP=true FOCUS="SwapConformance" CONTAINER_RUNTIME_ENDPOINT=unix:///var/run/crio/crio.sock TEST_ARGS='--kubelet-flags="--cgroup-driver=systemd --fail-swap-on=false" --feature-gates=NodeSwap=true'
+# make test-e2e-node REMOTE=false CLEANUP=true FOCUS="SwapConformance" CONTAINER_RUNTIME_ENDPOINT=unix:///var/run/crio/crio.sock TEST_ARGS='--kubelet-flags="--cgroup-driver=systemd --fail-swap-on=false" --feature-gates=NodeSwap=true --service-feature-gates="NodeSwap=true"'
 #
 # Fix problem of kubelet not cleaned up: kill -9 `netstat -tulpn | grep 10255 | tr -s " " | cut -d" " -f8 | cut -d"/" -f1`
 #
