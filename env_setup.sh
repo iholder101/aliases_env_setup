@@ -4,7 +4,7 @@ KUBEVIRT_REPO="${REPO_DIR}/kubevirt/"
 KUBERNETES_REPO="${REPO_DIR}/kubernetes/"
 
 # Kubevirt/Kubernetes setup
-export KUBEVIRT_PROVIDER=k8s-1.25 # this is also the default if no KUBEVIRT_PROVIDER is set
+export KUBEVIRT_PROVIDER=k8s-1.30 # this is also the default if no KUBEVIRT_PROVIDER is set
 export KUBECONFIG=${KUBEVIRT_REPO}/_ci-configs/${KUBEVIRT_PROVIDER}/.kubeconfig
 export KUBEVIRT_NUM_NODES=2
 export KUBEVIRT_STORAGE=rook-ceph-default
