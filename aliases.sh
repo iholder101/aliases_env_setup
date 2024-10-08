@@ -61,6 +61,7 @@ alias gcp='git cherry-pick'
 alias grm='gr main'
 alias gdiff='git difftool -y'
 alias git-show-commit-files='git diff-tree --no-commit-id --name-only -r'
+alias git-get-this-branch='git rev-parse --abbrev-ref HEAD'
 
 #Remote Git
 alias gpl='git pull'
@@ -69,8 +70,8 @@ alias gf='git fetch'
 alias gfu='gf upstream'
 alias gpu='gpl --rebase upstream main:main'
 alias gpum='gpl --rebase upstream master:master'
-alias refetch-branch='function temp_func { git clean -fd; a; git reset --hard; bc main; b -D $1; gf; bc $1 ; } ; temp_func'
-alias mrefetch-branch='function temp_func { git clean -fd; a; git reset --hard; bc master; b -D $1; gf; bc $1 ; } ; temp_func'
+alias refetch-branch='function temp_func { BRANCH=${1:-$(git-get-this-branch)}; git clean -fd; a; git reset --hard; bc main; b -D $BRANCH; gf; bc $BRANCH ; } ; temp_func'
+alias mrefetch-branch='function temp_func { BRANCH=${1:-$(git-get-this-branch)}; echo BRANCH: $BRANCH; git clean -fd; a; git reset --hard; bc master; b -D $BRANCH; gf; bc $BRANCH ; } ; temp_func'
 # $1: PR number, $2: branch name
 alias checkout-pr='function temp_func { git fetch origin pull/${1}/head:${2} ; git checkout $2 ; } ; temp_func'
 
