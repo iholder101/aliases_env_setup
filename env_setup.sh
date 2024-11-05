@@ -25,7 +25,7 @@ PS1="${blue}${NAME_ON_CMD_PROMPT}[${purple}\w${blue}]${end}> "
 unset purple blue end
 
 # Enable git completion
-source "$(pkg-config --variable=completionsdir bash-completion)"/git
+source /usr/share/bash-completion/completions/git
 
 # Set vim as default editor
 export VISUAL=vim
