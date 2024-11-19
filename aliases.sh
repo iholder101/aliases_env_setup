@@ -115,10 +115,10 @@ alias human-bytes='function temp_func { numfmt --to=iec-i --format="%.2f" $1 ; }
 alias human-si='function temp_func { numfmt --to=si --format="%.2f" $1 ; } ; temp_func '
 
 # Kubevirt & Kubernetes
-alias kk="${KUBEVIRT_REPO}/cluster-up/kubectl.sh"
+alias kk="${KUBEVIRT_REPO}/kubevirtci/cluster-up/kubectl.sh"
 alias k='kk'
-alias vv="${KUBEVIRT_REPO}/cluster-up/virtctl.sh"
-alias v="${KUBEVIRT_REPO}/cluster-up/virtctl.sh"
+alias vv="${KUBEVIRT_REPO}/kubevirtci/cluster-up/virtctl.sh"
+alias v="${KUBEVIRT_REPO}/kubevirtci/cluster-up/virtctl.sh"
 alias d="${KUBEVIRT_REPO}/hack/dockerized"
 alias init-cluser='make cluster-down && make cluster-up && make cluster-sync'
 alias set-nodes-number='function temp_func { export KUBEVIRT_NUM_NODES=$1 ; } ; temp_func'
@@ -134,7 +134,7 @@ function temp_func { \
 alias test-no-fmt='d "CI=${CI} ARTIFACTS=${ARTIFACTS} hack/bazel-test.sh"'
 alias set-cgroup-v1='unset KUBEVIRT_CGROUPV2'
 alias set-cgroup-v2='export KUBEVIRT_CGROUPV2="true"'
-alias node-ssh="${KUBEVIRT_REPO}/cluster-up/ssh.sh"
+alias node-ssh="${KUBEVIRT_REPO}/kubevirtci/cluster-up/ssh.sh"
 
 # Docker inside Podman
 # NOTE: In current setting all docker metadata is ephemeral. This causes a relatively large warm-up.
