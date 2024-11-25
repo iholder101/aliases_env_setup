@@ -153,6 +153,9 @@ alias kill-podman='function temp_func { podman stop $1; podman rm $1; }; temp_fu
 alias into-zeus='function temp_func { ssh root@zeus15.lab.eng.tlv2.redhat.com ; } ; temp_func '
 alias zeus-sshutle='sshuttle --dns -vr root@zeus15.lab.eng.tlv2.redhat.com 192.168.127.0/2'
 alias edit-kubevirt="k edit -n kubevirt kubevirt kubevirt"
+# Run cadvisor:
+# sudo docker run --privileged=true --userns=host   --volume=/:/rootfs:ro   --volume=/var/run:/var/run:ro   --volume=/sys:/sys:ro   --volume=/var/lib/docker/:/var/lib/docker:ro   --volume=/dev/disk/:/dev/disk:ro --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro   --publish=8080:8080   --detach=true   --name=cadvisor   gcr.io/cadvisor/cadvisor:latest
+
 
 # Remote Zeus
 RSYNC_INCLUDE_LIST='--include='*.yaml' --include='*.go' --include='BUILD.bazel' --include='*.json' --include='*.sh' --include='go.mod' --include='WORKSPACE' --include='api.proto''
