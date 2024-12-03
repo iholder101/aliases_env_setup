@@ -46,6 +46,7 @@ alias c='bb'
 alias bf='git branch | grep feature/'
 # git checkout, but that trims username and columns.
 # This is helpful for when copying a branch name from git, i.e. iholder101:branch-name
+alias bbc='git checkout' # that's the clean version for bc -b or bc -- FILE
 alias bc='function temp_func { git checkout `echo "$1" | cut -d":" -f2-`; } ; temp_func'
 alias a='git add .'
 alias m='git commit --signoff'
