@@ -1,0 +1,26 @@
+1. Download plugin:
+wget https://raw.githubusercontent.com/powerman/vim-plugin-AnsiEsc/refs/heads/master/plugin/AnsiEscPlugin.vim
+
+2. Move plugin to the right place:
+mkdir -p ~/.vim/plugin/
+mv AnsiEscPlugin.vim ~/.vim/plugin/
+
+3. Download vim-plug:
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+4. Add to ~/.vimrc:
+call plug#begin('~/.vim/plugged')
+Plug 'powerman/vim-plugin-AnsiEsc'
+call plug#end()
+
+5. Run vim and:
+:PlugInstall
+
+6. Optionally, add to ~/.vimrc to start plugin automatically:
+augroup AnsiEsc
+  autocmd!
+  autocmd BufReadPost * :AnsiEsc
+augroup END
+
+7. To start manually: :AnsiEsc
+
