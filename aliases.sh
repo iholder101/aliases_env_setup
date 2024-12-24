@@ -137,6 +137,7 @@ alias test-no-fmt='d "CI=${CI} ARTIFACTS=${ARTIFACTS} hack/bazel-test.sh"'
 alias set-cgroup-v1='unset KUBEVIRT_CGROUPV2'
 alias set-cgroup-v2='export KUBEVIRT_CGROUPV2="true"'
 alias node-ssh="${KUBEVIRT_REPO}/kubevirtci/cluster-up/ssh.sh"
+alias debug-node='function temp_func { k debug node/$1 -it --image=busybox -- /bin/sh ; } ; temp_func '
 
 # Docker inside Podman
 # NOTE: In current setting all docker metadata is ephemeral. This causes a relatively large warm-up.
@@ -213,6 +214,8 @@ alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut 
 alias docker-delete-everything='docker rm -f $(docker ps -a -q); docker rmi -f $(docker images -q); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q)'
 
 # Kind
+# Troubleshooting:
+#   * set export KUBE_GIT_VERSION="v1.32.0" according to k8s version.
 KIND_IMAGE_NAME="iholder-node-image:latest"
 CLUSTER_NAME="k8s-dev"
 KIND_CONFIG_FILE_PATH="/root/Repos/kind.config"
