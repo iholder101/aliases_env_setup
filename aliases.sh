@@ -138,6 +138,7 @@ alias set-cgroup-v1='unset KUBEVIRT_CGROUPV2'
 alias set-cgroup-v2='export KUBEVIRT_CGROUPV2="true"'
 alias node-ssh="${KUBEVIRT_REPO}/kubevirtci/cluster-up/ssh.sh"
 alias debug-node='function temp_func { k debug node/$1 -it --image=busybox -- /bin/sh ; } ; temp_func '
+alias debug-node-cmd='function temp_func { k debug node/$1 -it --image=busybox -- /bin/sh -c "chroot /host $2" ; } ; temp_func '
 
 # Docker inside Podman
 # NOTE: In current setting all docker metadata is ephemeral. This causes a relatively large warm-up.
