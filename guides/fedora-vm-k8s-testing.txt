@@ -1,0 +1,24 @@
+-----------------------
+
+ensure CRIO is the latest version.
+
+-----------------------
+
+Configure bridge nf call and ip forwarding
+
+Need to create file:
+/etc/sysctl.d/kubernetes.conf
+contents:
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+
+Also, load br_netfilter by doing:
+echo "br_netfilter" | sudo tee /etc/modules-load.d/kubernetes.conf
+
+Then execute:
+sudo sysctl --system
+
+This should make the changes permanent.
+
+
