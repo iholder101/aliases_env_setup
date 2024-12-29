@@ -37,6 +37,7 @@ sudo sysctl -p
 2. Follow instructions on https://github.com/cri-o/cri-o/blob/main/contrib/cni/README.md.
 - Replace CRIO's systemd config file with 11-crio-ipv4-bridge.conflist.
 - Install CNI like explained there.
+- Make sure CNI's **latest tag** is used.
 
 Verify by doing "ip link" and see that "cni0" is up.
 
