@@ -39,3 +39,18 @@ sudo sysctl -p
 - Install CNI like explained there.
 
 Verify by doing "ip link" and see that "cni0" is up.
+
+-----------------------
+
+Make sure the following exists in /etc/crio/crio.conf.d/10-crio.conf:
+
+```
+[crio.network]
+network_dir = "/etc/cni/net.d/"
+plugin_dirs = [
+    "/opt/cni/bin/",
+    "/usr/libexec/cni/",
+]
+cni_default_network = "crio"
+```
+
