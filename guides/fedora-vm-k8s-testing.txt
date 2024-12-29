@@ -4,7 +4,7 @@ ensure CRIO is the latest version.
 
 -----------------------
 
-Configure bridge nf call and ip forwarding
+Configure bridge nf call and ip forwarding.
 
 Need to create file:
 /etc/sysctl.d/kubernetes.conf
@@ -21,4 +21,21 @@ sudo sysctl --system
 
 This should make the changes permanent.
 
+-----------------------
 
+Use CRIO with ipv6 disabled.
+
+1. Disable ipv6
+- Edit the sysctl configuration file: Add the following to /etc/sysctl.conf:
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+
+- Apply the changes:
+sudo sysctl -p
+
+2. Follow instructions on https://github.com/cri-o/cri-o/blob/main/contrib/cni/README.md.
+- Replace CRIO's systemd config file with 11-crio-ipv4-bridge.conflist.
+- Install CNI like explained there.
+
+Verify by doing "ip link" and see that "cni0" is up.
