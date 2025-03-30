@@ -163,7 +163,8 @@ alias edit-kubevirt="k edit -n kubevirt kubevirt kubevirt"
 
 # Remote Zeus
 RSYNC_INCLUDE_LIST='--include='*.yaml' --include='*.go' --include='BUILD.bazel' --include='*.json' --include='*.sh' --include='go.mod' --include='WORKSPACE' --include='api.proto''
-RSYNC_EXCLUDE_LIST='--exclude='vendor/' --exclude='_out/' --exclude='output/' --exclude='_ci-configs/' --exclude='.idea/' --exclude-from='.gitignore' --exclude='.git/''
+RSYNC_EXCLUDE_LIST='--exclude='_out/' --exclude='output/' --exclude='_ci-configs/' --exclude='.idea/' --exclude-from='.gitignore' --exclude='.git/''
+#RSYNC_EXCLUDE_LIST='--exclude='vendor/' --exclude='_out/' --exclude='output/' --exclude='_ci-configs/' --exclude='.idea/' --exclude-from='.gitignore' --exclude='.git/''
 RSYNC_FILE_LIST="${RSYNC_EXCLUDE_LIST} ${RSYNC_INCLUDE_LIST} --include='*/' --exclude='*'"
 ZEUS_USER_NUMBER="1000"
 RSYNC_CORE_PARAMS="-pamh" #"--chown=${ZEUS_USER_NUMBER}:${ZEUS_USER_NUMBER} -pamh"
@@ -248,6 +249,15 @@ alias bazel='bazelisk'
 alias goland='~/.local/bin/goland'
 # Use this to find cluster's kubeconfig. Search kubeconfigs on that node
 alias ssh-executor='ssh -l cloud-user -i ~/.ssh/cnv-qe-jenkins.key ocp-ipi-executor.cnv-qe.rhcloud.com'
+alias ps1-only-show-basedir='\
+function temp_func { \
+	NAME_ON_CMD_PROMPT="iholder" ;\
+	purple="\[\033[1;95m\]" ;\
+	blue="\[\033[1;94m\]" ;\
+	end="\[\033[0m\]" ;\
+	PS1="${blue}${NAME_ON_CMD_PROMPT}[${purple}\W${blue}]${end}> " ;\
+	unset purple blue end ;\
+} ; temp_func '
 
 # Kubevirt Testing
 alias test-reset-args='unset FUNC_TEST_ARGS'
