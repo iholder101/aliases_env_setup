@@ -209,7 +209,7 @@ alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
 # ./_output/bin/e2e.test -context kind-k8s-dev -ginkgo.focus=".*iholder.*" -provider=local -num-nodes=2 #-ginkgo.vv
 #
 # If ping doesn't work, do sudo sysctl -w net.ipv4.ping_group_range="0 2000"
-alias ssh-gcloud='function temp_func { gcloud compute ssh core@${1}; }; temp_func'
+alias ssh-gcloud='function temp_func { ssh -i ~/.ssh/google_compute_engine core@${1}; }; temp_func'
 
 # Docker and containers
 alias stop-all-containers='docker stop `docker ps | tail -n+2 | tr -s " " | cut -d" " -f1 | xargs`'
