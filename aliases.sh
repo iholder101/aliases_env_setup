@@ -164,7 +164,7 @@ alias edit-kubevirt="k edit -n kubevirt kubevirt kubevirt"
 # Remote Zeus
 RSYNC_INCLUDE_LIST='--include='*.yaml' --include='*.go' --include='BUILD.bazel' --include='*.json' --include='*.sh' --include='go.mod' --include='WORKSPACE' --include='api.proto''
 RSYNC_EXCLUDE_LIST='--exclude='_out/' --exclude='output/' --exclude='_ci-configs/' --exclude='.idea/' --exclude-from='.gitignore' --exclude='.git/''
-#RSYNC_EXCLUDE_LIST='--exclude='vendor/' --exclude='_out/' --exclude='output/' --exclude='_ci-configs/' --exclude='.idea/' --exclude-from='.gitignore' --exclude='.git/''
+#RSYNC_EXCLUDE_LIST='--exclude='vendor/' --exclude='_out/' --exclude='output/' --exclude='_ci-configs/' --exclude='.idea/' --exclude='CLAUDE.md' --exclude-from='.gitignore'  --exclude='.git/''
 RSYNC_FILE_LIST="${RSYNC_EXCLUDE_LIST} ${RSYNC_INCLUDE_LIST} --include='*/' --exclude='*'"
 ZEUS_USER_NUMBER="1000"
 RSYNC_CORE_PARAMS="-pamh" #"--chown=${ZEUS_USER_NUMBER}:${ZEUS_USER_NUMBER} -pamh"
@@ -271,6 +271,9 @@ alias goto-k8s="cd $KUBERNETES_REPO"
 alias goto-buf="cd ~/Work/KubeVirt/buf"
 alias goto-repos="cd $KUBEVIRT_REPO/.."
 alias goto-env="cd `dirname ${THIS_FILE_PATH}`"
+
+# Claude Metadata
+export GITHUB_TOKEN="REMOVED_SECRET"
 
 # Clean up
 unset THIS_FILE_PATH
