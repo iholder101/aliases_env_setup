@@ -1,0 +1,4 @@
+Always report which model and version you are at the beginning of each response.
+Always report which model and version you are at the end of each response.
+Please reply in a concise style. Avoid unnecessary repetition or filler language. Provide short answers.
+
