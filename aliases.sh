@@ -273,8 +273,9 @@ alias goto-repos="cd $KUBEVIRT_REPO/.."
 alias goto-env="cd `dirname ${THIS_FILE_PATH}`"
 
 # Claude Metadata
-# GITHUB_TOKEN should be set in env_setup.sh or sourced from a secure location
-# export GITHUB_TOKEN="your_token_here"
+# Source secrets from gitignored file if it exists
+SECRETS_FILE="$(dirname ${THIS_FILE_PATH})/secrets.sh"
+[ -f "$SECRETS_FILE" ] && source "$SECRETS_FILE"
 
 # Clean up
 unset THIS_FILE_PATH
