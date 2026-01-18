@@ -31,6 +31,7 @@ alias mk='make'
 alias mkc='make clean; make'
 alias scale-text='function temp_func { gsettings set org.gnome.desktop.interface text-scaling-factor $1; } ; temp_func'
 alias cls='cl; s'
+alias claude-tmux='/home/iholder/tmux_with_claude.sh'
 
 #Sed patterns
 alias sed-remove-colors="sed 's/\x1b\[[0-9;]*m//g'"
