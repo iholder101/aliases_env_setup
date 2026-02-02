@@ -32,6 +32,7 @@ alias mkc='make clean; make'
 alias scale-text='function temp_func { gsettings set org.gnome.desktop.interface text-scaling-factor $1; } ; temp_func'
 alias cls='cl; s'
 alias claude-tmux='/home/iholder/tmux_with_claude.sh'
+alias spl-tmux='tmux new-session \; split-window -h -b \; select-pane -t 0 \; select-pane -t 2'
 
 #Sed patterns
 alias sed-remove-colors="sed 's/\x1b\[[0-9;]*m//g'"
