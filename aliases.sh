@@ -223,7 +223,7 @@ alias docker-delete-everything='docker rm -f $(docker ps -a -q); docker rmi -f $
 KIND_IMAGE_NAME="iholder-node-image:latest"
 CLUSTER_NAME="k8s-dev"
 KIND_CONFIG_FILE_PATH="/root/Repos/kind.config"
-alias kind-setup-git-version="cd ${KUBERNETES_REPO}; export KUBE_GIT_VERSION=`git rev-parse HEAD`; cd -; echo KUBE_GIT_VERSION=$KUBE_GIT_VERSION"
+alias kind-setup-git-version='cd ${KUBERNETES_REPO}; export KUBE_GIT_VERSION=$(git rev-parse HEAD); cd -; echo KUBE_GIT_VERSION=$KUBE_GIT_VERSION'
 alias kind-build-node-image="kind build node-image ${KUBERNETES_REPO} --image ${KIND_IMAGE_NAME}"
 alias kind-create-cluster="kind delete cluster --name ${CLUSTER_NAME}; kind create cluster --config ${KIND_CONFIG_FILE_PATH} --image ${KIND_IMAGE_NAME} --name ${CLUSTER_NAME}; alias k=kubectl"
 alias kind-init-cluster="kind-build-node-image; kind-create-cluster"
