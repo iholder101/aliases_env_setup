@@ -3,6 +3,8 @@ REPO_DIR="/home/${USER}/Work/Repos/"
 KUBEVIRT_REPO="${REPO_DIR}/kubevirt/"
 KUBERNETES_REPO="${REPO_DIR}/kubernetes/"
 
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
+
 # Kubevirt/Kubernetes setup
 export KUBEVIRT_PROVIDER=k8s-1.30 # this is also the default if no KUBEVIRT_PROVIDER is set
 export KUBECONFIG=${KUBEVIRT_REPO}/_ci-configs/${KUBEVIRT_PROVIDER}/.kubeconfig
