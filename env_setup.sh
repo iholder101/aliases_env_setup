@@ -23,6 +23,7 @@ NAME_ON_CMD_PROMPT="iholder"
 purple="\[\033[1;95m\]"
 blue="\[\033[1;94m\]"
 end="\[\033[0m\]"
+PROMPT_DIRTRIM=2
 PS1="${blue}${NAME_ON_CMD_PROMPT}[${purple}\w${blue}]${end}> "
 unset purple blue end
 
