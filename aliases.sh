@@ -20,7 +20,6 @@ alias backup-env='cp ~/ENV/aliases.sh ~/ENV/backup/aliases_$(date +"%Y-%m-%d").s
 alias vi='vim'
 alias ne='nedit'
 alias ge='geany'
-alias diff='meld'
 alias p3='python3'
 alias p2='python2'
 alias grep='grep -sI --color=auto' # add -Hn for file+line number
@@ -158,6 +157,8 @@ alias into-container-root='function temp_func { sudo podman exec -it --privilege
 alias kill-podman='function temp_func { podman stop $1; podman rm $1; }; temp_func'
 # TODO: 1) automate chmod for docker socket 2) get .inputrc + .vimrc into container 3) enable completion
 alias into-zeus='function temp_func { ssh root@zeus15.lab.eng.tlv2.redhat.com ; } ; temp_func '
+alias into-openclaw='ssh -J root@zeus15.lab.eng.tlv2.redhat.com openclaw@192.168.122.142'
+alias into-openclaw-console='echo Log into http://127.0.0.1:18789/ via browser; echo; ssh -J root@zeus15.lab.eng.tlv2.redhat.com -L 18789:127.0.0.1:18789 openclaw@192.168.122.142'
 alias zeus-sshutle='sshuttle --dns -vr root@zeus15.lab.eng.tlv2.redhat.com 192.168.127.0/2'
 alias edit-kubevirt="k edit -n kubevirt kubevirt kubevirt"
 # Run cadvisor:
