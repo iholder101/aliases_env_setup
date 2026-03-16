@@ -31,7 +31,7 @@ alias mkc='make clean; make'
 alias scale-text='function temp_func { gsettings set org.gnome.desktop.interface text-scaling-factor $1; } ; temp_func'
 alias cls='cl; s'
 alias claude-tmux='/home/iholder/tmux_with_claude.sh'
-alias claude-allow-container-cmds='claude --allowedTools "mcp__zeus__run_arbitrary_cmd_on_zeus_container" "mcp__zeus__run_readonly_cmd_on_zeus_container"'
+alias claude-allow-container-cmds='claude --allowedTools "Bash(~/.claude/bin/zeus/zeus.sh container *)" "Bash(/home/iholder/.claude/bin/zeus/zeus.sh container *)"'
 alias spl-tmux='tmux new-session \; split-window -v -p 25 \; select-pane -U \; split-window -h \; select-pane -t 0'
 alias set-brighness='function temp_func { sudo ddcutil setvcp 10 "$1"; } ; temp_func'
 
