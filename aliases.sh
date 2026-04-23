@@ -30,8 +30,6 @@ alias mk='make'
 alias mkc='make clean; make'
 alias scale-text='function temp_func { gsettings set org.gnome.desktop.interface text-scaling-factor $1; } ; temp_func'
 alias cls='cl; s'
-alias claude-tmux='/home/iholder/tmux_with_claude.sh'
-alias claude-allow-container-cmds='claude --allowedTools "Bash(~/.claude/bin/zeus/zeus.sh container *)" "Bash(/home/iholder/.claude/bin/zeus/zeus.sh container *)"'
 alias spl-tmux='tmux new-session \; split-window -v -p 25 \; select-pane -U \; split-window -h \; select-pane -t 0'
 alias set-brighness='function temp_func { sudo ddcutil setvcp 10 "$1"; } ; temp_func'
 
@@ -281,6 +279,9 @@ alias goto-env="cd `dirname ${THIS_FILE_PATH}`"
 # Source secrets from gitignored file if it exists
 SECRETS_FILE="$(dirname ${THIS_FILE_PATH})/secrets.sh"
 [ -f "$SECRETS_FILE" ] && source "$SECRETS_FILE"
+
+# Claude Code
+alias claude='claude --effort max'
 
 # Clean up
 unset THIS_FILE_PATH

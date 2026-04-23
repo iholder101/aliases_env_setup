@@ -42,3 +42,12 @@ export KUBERNETES_REPO_DIR='/root/Repos/kubernetes'
 gsettings set org.gnome.mutter workspaces-only-on-primary true
 
 export REPO2_ADDITION=1
+
+# Claude Code
+export CLAUDE_CODE_USE_VERTEX=1
+export CLOUD_ML_REGION=global
+export ANTHROPIC_VERTEX_PROJECT_ID=itpc-gcp-hcm-pe-eng-claude
+export PATH=$PATH:$HOME/.npm-global/bin
+export CLAUDE_CODE_SUBAGENT_MODEL=opus
+
+
