@@ -4,13 +4,13 @@
 #
 
 ### GENERAL ALIAS CONFIGS ###
-THIS_FILE_PATH="/home/iholder/.env/aliases_env_setup/aliases.sh"
-ENV_FILE_PATH="/home/iholder/.env/aliases_env_setup/env_setup.sh"
+THIS_FILE_PATH="${BASH_SOURCE[0]:-/home/iholder/.env/aliases_env_setup/aliases.sh}"
+ENV_FILE_PATH="$(dirname "${THIS_FILE_PATH}")/env_setup.sh"
 
 #Alises
 alias update="source ${THIS_FILE_PATH} && source ${ENV_FILE_PATH}"
 alias show="vi ${THIS_FILE_PATH}" #show this file
-alias envshow="vi ${ENV_FILE_PATH}" 
+alias envshow="vi ${ENV_FILE_PATH}"
 alias envupdate="source ${ENV_FILE_PATH}"
 alias aliasupdate="source ${THIS_FILE_PATH}"
 alias backup-env='cp ~/ENV/aliases.sh ~/ENV/backup/aliases_$(date +"%Y-%m-%d").sh; \
@@ -191,7 +191,7 @@ alias into-k8s='cd ${KUBERNETES_REPO_DIR}; source ${KUBERNETES_ENV_FILE};'
 # Other useful flags: DELETE_INSTANCES=true CLEANUP=true
 #
 # An old GCP instance:
-# export KUBE_SSH_USER=core && make test-e2e-node FOCUS="iholder" SKIP="dummy" HOSTS="n1-standard-2-fedora-coreos-39-20240210-3-0-gcp-x86-64-de4f4820" CLEANUP=true SSH_USER="core" KUBE_SSH_USER=core REMOTE=true RUNTIME=remote USE_DOCKERIZED_BUILD=false IMAGE_CONFIG_FILE="/workspace/test-infra/jobs/e2e_node/swap/image-config-swap-fedora.yaml" CONTAINER_RUNTIME_ENDPOINT="unix:///var/run/crio/crio.sock" TEST_ARGS='--kubelet-flags="--fail-swap-on=false --cgroup-driver=systemd --cgroups-per-qos=true --cgroup-root=/  --runtime-cgroups=/system.slice/crio.service --kubelet-cgroups=/system.slice/kubelet.service" --extra-log="{\"name\": \"crio.log\", \"journalctl\": [\"-u\", \"crio\"]}" --feature-gates=NodeSwap=true --service-feature-gates="NodeSwap=true" 
+# export KUBE_SSH_USER=core && make test-e2e-node FOCUS="iholder" SKIP="dummy" HOSTS="n1-standard-2-fedora-coreos-39-20240210-3-0-gcp-x86-64-de4f4820" CLEANUP=true SSH_USER="core" KUBE_SSH_USER=core REMOTE=true RUNTIME=remote USE_DOCKERIZED_BUILD=false IMAGE_CONFIG_FILE="/workspace/test-infra/jobs/e2e_node/swap/image-config-swap-fedora.yaml" CONTAINER_RUNTIME_ENDPOINT="unix:///var/run/crio/crio.sock" TEST_ARGS='--kubelet-flags="--fail-swap-on=false --cgroup-driver=systemd --cgroups-per-qos=true --cgroup-root=/  --runtime-cgroups=/system.slice/crio.service --kubelet-cgroups=/system.slice/kubelet.service" --extra-log="{\"name\": \"crio.log\", \"journalctl\": [\"-u\", \"crio\"]}" --feature-gates=NodeSwap=true --service-feature-gates="NodeSwap=true"
 #
 # Please notice HOSTS that exists here instead of INSTANCE_PREFIX.
 #

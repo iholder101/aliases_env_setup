@@ -1,12 +1,21 @@
 # Global paths
-REPO_DIR="/home/${USER}/Work/Repos/"
-KUBEVIRT_REPO="${REPO_DIR}/kubevirt/"
-KUBERNETES_REPO="${REPO_DIR}/kubernetes/"
+REPO_DIR="${REPO_DIR:-/home/${USER}/Work/Repos}"
+KUBEVIRT_REPO="${KUBEVIRT_REPO:-${REPO_DIR}/kubevirt}"
+KUBERNETES_REPO="${KUBERNETES_REPO:-${REPO_DIR}/kubernetes}"
 
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 
 # Kubevirt/Kubernetes setup
-export KUBEVIRT_PROVIDER=k8s-1.30 # this is also the default if no KUBEVIRT_PROVIDER is set
+if [ -z "${KUBEVIRT_PROVIDER}" ]; then
+    _kvci_k8s_dir="${KUBEVIRT_REPO}/kubevirtci/cluster-provision/k8s"
+    if [ -d "$_kvci_k8s_dir" ]; then
+        KUBEVIRT_PROVIDER="k8s-$(ls "$_kvci_k8s_dir" | grep -E '^[0-9]+\.[0-9]+' | sort -V | tail -1)"
+    else
+        KUBEVIRT_PROVIDER=k8s-1.36
+    fi
+    unset _kvci_k8s_dir
+fi
+export KUBEVIRT_PROVIDER
 export KUBECONFIG=${KUBEVIRT_REPO}/_ci-configs/${KUBEVIRT_PROVIDER}/.kubeconfig
 export KUBEVIRT_NUM_NODES=2
 export KUBEVIRT_STORAGE=rook-ceph-default
@@ -19,7 +28,7 @@ complete -F __start_kubectl kk
 
 # Command-Prompt
 # *Note* - invisible characters need to be wrapped with \[ and \] in order for the terminal to wrap text correctly.
-NAME_ON_CMD_PROMPT="iholder"
+NAME_ON_CMD_PROMPT="${NAME_ON_CMD_PROMPT:-iholder}"
 purple="\[\033[1;95m\]"
 blue="\[\033[1;94m\]"
 end="\[\033[0m\]"
@@ -39,9 +48,9 @@ export KUBERNETES_ENV_FILE='/root/Repos/kubernetes.env'
 export KUBERNETES_REPO_DIR='/root/Repos/kubernetes'
 
 # Gnome settings
-gsettings set org.gnome.mutter workspaces-only-on-primary true
+command -v gsettings &>/dev/null && gsettings set org.gnome.mutter workspaces-only-on-primary true
 
-export REPO2_ADDITION=1
+export REPO2_ADDITION="${REPO2_ADDITION:-1}"
 
 # Claude Code
 export CLAUDE_CODE_USE_VERTEX=1
