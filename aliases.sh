@@ -31,7 +31,7 @@ alias mkc='make clean; make'
 alias scale-text='function temp_func { gsettings set org.gnome.desktop.interface text-scaling-factor $1; } ; temp_func'
 alias cls='cl; s'
 alias spl-tmux='tmux new-session \; split-window -v -p 25 \; select-pane -U \; split-window -h \; select-pane -t 0'
-alias set-brighness='function temp_func { sudo ddcutil setvcp 10 "$1"; } ; temp_func'
+alias set-brightness='function temp_func { sudo ddcutil setvcp 10 "$1"; } ; temp_func'
 
 #Sed patterns
 alias sed-remove-colors="sed 's/\x1b\[[0-9;]*m//g'"
@@ -123,7 +123,7 @@ alias k='kk'
 alias vv="${KUBEVIRT_REPO}/kubevirtci/cluster-up/virtctl.sh"
 alias v="${KUBEVIRT_REPO}/kubevirtci/cluster-up/virtctl.sh"
 alias d="${KUBEVIRT_REPO}/hack/dockerized"
-alias init-cluser='make cluster-down && make cluster-up && make cluster-sync'
+alias init-cluster='make cluster-down && make cluster-up && make cluster-sync'
 alias set-nodes-number='function temp_func { export KUBEVIRT_NUM_NODES=$1 ; } ; temp_func'
 alias get-nodes-number='echo Number of nodes: $KUBEVIRT_NUM_NODES'
 alias switch-repo1='REPO2_ADDITION=1; KUBEVIRT_REPO="/home/iholder/Work/Repos/kubevirt"; aliasupdate'
@@ -149,7 +149,7 @@ alias debug-node-cmd='function temp_func { k debug node/$1 -it --image=busybox -
 # In zeus:
 #DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v /root/Repos/kubevirt_in_docker${REPO2_ADDITION}:/home/iholder/kubevirt -v /root/docker-in-podman-data/repo${REPO2_ADDITION}:/var/lib/docker"
 DOCKER_IN_DOCKER_ARGS="-it -d --user 0 --privileged --pids-limit=0 -v ${KUBEVIRT_REPO}:/kubevirt -v /home/iholder/Work/Repos/docker-in-container-data/kubevirt${REPO2_ADDITION}:/var/lib/docker"
-PODMAN_IN_DOCKER_TAG="10-03-24"
+PODMAN_IN_DOCKER_TAG="17-04-25"
 alias new-repo-container='function temp_func { sudo podman run --name=k${REPO2_ADDITION} $DOCKER_IN_DOCKER_ARGS quay.io/mabekitzur/kubevirtci:${PODMAN_IN_DOCKER_TAG} ; } ; temp_func'
 alias into-container='function temp_func { sudo podman exec -it --privileged --user "iholder" $1 /bin/bash; }; temp_func'
 alias into-container-root='function temp_func { sudo podman exec -it --privileged --user 0 $1 /bin/bash; }; temp_func'
@@ -158,7 +158,7 @@ alias kill-podman='function temp_func { podman stop $1; podman rm $1; }; temp_fu
 alias into-zeus='function temp_func { ssh root@zeus15.lab.eng.tlv2.redhat.com ; } ; temp_func '
 alias into-openclaw='ssh -J root@zeus15.lab.eng.tlv2.redhat.com openclaw@192.168.122.142'
 alias into-openclaw-console='echo Log into http://127.0.0.1:18789/ via browser; echo; ssh -J root@zeus15.lab.eng.tlv2.redhat.com -L 18789:127.0.0.1:18789 openclaw@192.168.122.142'
-alias zeus-sshutle='sshuttle --dns -vr root@zeus15.lab.eng.tlv2.redhat.com 192.168.127.0/2'
+alias zeus-sshuttle='sshuttle --dns -vr root@zeus15.lab.eng.tlv2.redhat.com 192.168.127.0/2'
 alias edit-kubevirt="k edit -n kubevirt kubevirt kubevirt"
 # Run cadvisor:
 # sudo docker run --privileged=true --userns=host   --volume=/:/rootfs:ro   --volume=/var/run:/var/run:ro   --volume=/sys:/sys:ro   --volume=/var/lib/docker/:/var/lib/docker:ro   --volume=/dev/disk/:/dev/disk:ro --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro   --publish=8080:8080   --detach=true   --name=cadvisor   gcr.io/cadvisor/cadvisor:latest
@@ -228,10 +228,10 @@ alias kind-setup-git-version='cd ${KUBERNETES_REPO}; export KUBE_GIT_VERSION=$(g
 alias kind-build-node-image="kind build node-image ${KUBERNETES_REPO} --image ${KIND_IMAGE_NAME}"
 alias kind-create-cluster="kind delete cluster --name ${CLUSTER_NAME}; kind create cluster --config ${KIND_CONFIG_FILE_PATH} --image ${KIND_IMAGE_NAME} --name ${CLUSTER_NAME}; alias k=kubectl"
 alias kind-init-cluster="kind-build-node-image; kind-create-cluster"
-alias into-kind='export KUBE_GIT_VERSION="v1.30.0"; cd /root/Repos/; alias k=/root/Repos/kubernetes/_output/local/go/bin/kubectl'
+alias into-kind='export KUBE_GIT_VERSION="v1.36.0"; cd /root/Repos/; alias k=/root/Repos/kubernetes/_output/local/go/bin/kubectl'
 
 # Custom containers
-DEBUG_CONTAINER_TAG='17-07-23'
+DEBUG_CONTAINER_TAG='17-04-25'
 alias debug-container='\
 function temp_func { \
 	DIR_TO_COPY="$1"; \
