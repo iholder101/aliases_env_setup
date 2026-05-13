@@ -247,7 +247,7 @@ function temp_func { \
 } ; temp_func '
 
 # Misc
-alias quayio-login='docker login -u="mabekitzur" -p="ApOtc4szRbgfg/7h1+uRBb9wYdRj8UOJomItV7lsPtBKtGpnkAkNCQZ+yoLwAkOu" quay.io'
+alias quayio-login='docker login -u="mabekitzur" -p="${QUAY_PASSWORD:?Set QUAY_PASSWORD in secrets.sh}" quay.io'
 alias bazel='bazelisk'
 alias goland='~/.local/bin/goland'
 # Use this to find cluster's kubeconfig. Search kubeconfigs on that node
