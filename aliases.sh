@@ -65,6 +65,7 @@ alias git-show-commit-files='git diff-tree --no-commit-id --name-only -r'
 alias git-get-this-branch='git rev-parse --abbrev-ref HEAD'
 alias git-my-commits-count='latest_author=$(git log -1 --pretty=format:"%an"); git log --pretty=format:"%an" | awk -v author="$(git log -1 --pretty=format:"%an")" '\''{if ($0 != author) exit; else count++} END {print count}'\'
 alias gri='gr -i HEAD~$(git-my-commits-count)'
+alias gwl='git worktree list | tr -s " " | cut -d" " -f3- | sed "s/\[//g" | sed "s/\]//g"'
 
 #Remote Git
 alias gpl='git pull'
@@ -282,6 +283,7 @@ SECRETS_FILE="$(dirname ${THIS_FILE_PATH})/secrets.sh"
 
 # Claude Code
 alias claude='claude --effort max'
+alias klcs='l ~/.claude/containers/'
 
 # Clean up
 unset THIS_FILE_PATH
