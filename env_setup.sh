@@ -3,8 +3,6 @@ REPO_DIR="${REPO_DIR:-/home/${USER}/Work/Repos}"
 KUBEVIRT_REPO="${KUBEVIRT_REPO:-${REPO_DIR}/kubevirt}"
 KUBERNETES_REPO="${KUBERNETES_REPO:-${REPO_DIR}/kubernetes}"
 
-export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
-
 # Kubevirt/Kubernetes setup
 if [ -z "${KUBEVIRT_PROVIDER}" ]; then
     _kvci_k8s_dir="${KUBEVIRT_REPO}/kubevirtci/cluster-provision/k8s"
@@ -55,7 +53,5 @@ export REPO2_ADDITION="${REPO2_ADDITION:-1}"
 # Claude Code
 export CLAUDE_CODE_USE_VERTEX=1
 export CLOUD_ML_REGION=global
-export ANTHROPIC_VERTEX_PROJECT_ID=itpc-gcp-hcm-pe-eng-claude
 export PATH=$PATH:$HOME/.npm-global/bin
-export CLAUDE_CODE_EFFORT_LEVEL=max
 

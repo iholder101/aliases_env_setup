@@ -282,7 +282,6 @@ SECRETS_FILE="$(dirname ${THIS_FILE_PATH})/secrets.sh"
 [ -f "$SECRETS_FILE" ] && source "$SECRETS_FILE"
 
 # Claude Code
-alias claude='claude --effort max'
 alias klcs='l ~/.claude/containers/'
 
 # Clean up
