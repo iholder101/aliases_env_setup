@@ -288,6 +288,9 @@ alias klcs='l ~/.claude/containers/'
 export HAPPY_CLAUDE_PATH="$HOME/.local/bin/claude"
 command -v happy >/dev/null && alias claude='happy'
 
+# Block lid-close/idle suspend while away (e.g. for remote access); Ctrl-C to release
+alias keep-monitor-on='systemd-inhibit --what=handle-lid-switch:sleep:idle --mode=block --who=remote --why="remote access" sleep infinity'
+
 # Clean up
 unset THIS_FILE_PATH
 
