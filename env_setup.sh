@@ -51,7 +51,7 @@ command -v gsettings &>/dev/null && gsettings set org.gnome.mutter workspaces-on
 export REPO2_ADDITION="${REPO2_ADDITION:-1}"
 
 # Claude Code
-export CLAUDE_CODE_USE_VERTEX=1
-export CLOUD_ML_REGION=global
+#export CLAUDE_CODE_USE_VERTEX=1
+#export CLOUD_ML_REGION=global
 export PATH=$PATH:$HOME/.npm-global/bin
 
