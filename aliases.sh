@@ -284,6 +284,10 @@ SECRETS_FILE="$(dirname ${THIS_FILE_PATH})/secrets.sh"
 # Claude Code
 alias klcs='l ~/.claude/containers/'
 
+# Route sessions through Happy so they can be taken over from the phone
+export HAPPY_CLAUDE_PATH="$HOME/.local/bin/claude"
+command -v happy >/dev/null && alias claude='happy'
+
 # Clean up
 unset THIS_FILE_PATH
 
