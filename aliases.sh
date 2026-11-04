@@ -288,6 +288,10 @@ alias klcs='l ~/.claude/containers/'
 export HAPPY_CLAUDE_PATH="$HOME/.local/bin/claude"
 command -v happy >/dev/null && alias claude='happy'
 
+# List running happy sessions / take one over on this machine
+alias hpy-list="$HOME/.env/aliases_env_setup/bin/hpy.py list"
+alias hpy-takeover="$HOME/.env/aliases_env_setup/bin/hpy.py takeover"
+
 # Block lid-close/idle suspend while away (e.g. for remote access); Ctrl-C to release
 alias keep-monitor-on='systemd-inhibit --what=handle-lid-switch:sleep:idle --mode=block --who=remote --why="remote access" sleep infinity'
 
